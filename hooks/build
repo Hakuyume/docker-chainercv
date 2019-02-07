@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+if [[ ${DOCKER_TAG} =~ ^chainer([0-9ab.]+)-(devel|devel-minimal)$ ]]; then
+   CHAINER=${BASH_REMATCH[1]}
+   DOCKERFILE=${BASH_REMATCH[2]}
+fi
+
+docker build --build-arg CHAINER=${CHAINER} -t ${IMAGE_NAME} ${DOCKERFILE}
