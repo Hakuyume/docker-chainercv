@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+set -eu
+
+[[ ${DOCKER_TAG} =~ ^chainer([0-9ab.]+)-devel$ ]]
+CHAINER=${BASH_REMATCH[1]}
+
+docker build --build-arg CHAINER=${CHAINER} -t ${IMAGE_NAME} .
