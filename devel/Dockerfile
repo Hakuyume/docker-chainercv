@@ -6,13 +6,14 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
     git \
     openssh-client \
     python-dev \
-    python-pip \
-    python-setuptools \
     python3-dev \
-    python3-pip \
-    python3-setuptools \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+RUN curl -LO https://bootstrap.pypa.io/get-pip.py \
+    && python2 get-pip.py --no-cache-dir \
+    && python3 get-pip.py --no-cache-dir \
+    && rm get-pip.py
 
 RUN cd $(mktemp -d) \
     && curl -L https://www.open-mpi.org/software/ompi/v3.0/downloads/openmpi-3.0.1.tar.bz2 | tar jxf - \

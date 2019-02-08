@@ -5,13 +5,14 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
     curl \
     git \
     python-dev \
-    python-pip \
-    python-setuptools \
     python3-dev \
-    python3-pip \
-    python3-setuptools \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+RUN curl -LO https://bootstrap.pypa.io/get-pip.py \
+    && python2 get-pip.py --no-cache-dir \
+    && python3 get-pip.py --no-cache-dir \
+    && rm get-pip.py
 
 RUN pip2 install --no-cache-dir \
     cython \
