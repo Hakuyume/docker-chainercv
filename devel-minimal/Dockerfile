@@ -24,9 +24,11 @@ RUN pip3 install --no-cache-dir \
     pytest
 
 ARG CHAINER
-RUN pip2 install --no-cache-dir \
+RUN [ -z ${CHAINER} ] \
+    || pip2 install --no-cache-dir \
     chainer==${CHAINER} \
     cupy-cuda92==${CHAINER}
-RUN pip3 install --no-cache-dir \
+RUN [ -z ${CHAINER} ] \
+    || pip3 install --no-cache-dir \
     chainer==${CHAINER} \
     cupy-cuda92==${CHAINER}
