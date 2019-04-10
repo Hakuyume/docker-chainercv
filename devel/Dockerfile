@@ -21,7 +21,8 @@ RUN cd $(mktemp -d) \
     && ./configure --with-cuda \
     && make -j $(nproc) \
     && make install \
-    && rm -rf /tmp/*
+    && cd - \
+    && rm -rf $(pwd)
 
 COPY --from=hakuyume/python-opencv:ubuntu18.04 /usr/local/lib /usr/local/lib
 RUN echo /usr/local/lib/ > /etc/ld.so.conf.d/local.conf \
